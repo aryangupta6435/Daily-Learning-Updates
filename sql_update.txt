@@ -1,0 +1,84 @@
+CREATE TABLE student(
+s_id INT PRIMARY KEY,
+s_name VARCHAR(255)
+);
+INSERT INTO student VALUES(1,'aniket');
+
+SELECT * FROM student;
+
+
+CREATE TABLE worker(
+worker_id INT NOT NULL PRIMARY KEY,
+first_name CHAR(25),
+last_name CHAR(25),
+salary INT,
+joining_date DATE,
+department CHAR(25)
+);
+
+INSERT INTO worker(worker_id,first_name,last_name,salary,joining_date,department)
+VALUES(01,'Monika','Gupta',10000,to_date('14-2-2024','dd-mm-yyyy'),'OPS');
+
+INSERT INTO worker(worker_id,first_name,last_name,salary,joining_date,department)
+values (02,'Mona','J',10000,to_date('14-2-2024','dd-mm-yyyy'),'OPS');
+INSERT INTO worker(worker_id,first_name,last_name,salary,joining_date,department)
+values (03,'Yolo','P',10000,to_date('14-11-2023','dd-mm-yyyy'),'OPS');
+
+SELECT * FROM worker;
+
+CREATE TABLE bonus(
+worker_ref_id INT ,
+bonus_amount INT,
+bonus_date DATE,
+FOREIGN KEY (worker_ref_id) REFERENCES worker(worker_id)ON DELETE CASCADE);
+
+SELECT * FROM BONUS;
+
+INSERT INTO bonus(worker_ref_id,bonus_amount,bonus_date) VALUES(01,2000,to_date('14-3-2024','dd-mm-yyyy'));
+INSERT INTO bonus(worker_ref_id,bonus_amount,bonus_date) VALUES(02,1000,to_date('12-3-2024','dd-mm-yyyy'));
+INSERT INTO bonus(worker_ref_id,bonus_amount,bonus_date) VALUES(03,0,to_date('11-3-2024','dd-mm-yyyy'));
+
+CREATE TABLE Titleee(
+worker_ref_id INT,
+worker_title CHAR(25),
+affected_from DATE,
+FOREIGN KEY(worker_ref_id) REFERENCES worker(worker_id) ON DELETE CASCADE);
+
+INSERT INTO Titleee(worker_ref_id,worker_title,affected_from) values(01,'Manager',to_date('14-3-2024','dd-mm-yyyy'));
+INSERT INTO Titleee(worker_ref_id,worker_title,affected_from) values(02,'Manager',to_date('15-3-2024','dd-mm-yyyy'));
+INSERT INTO Titleee(worker_ref_id,worker_title,affected_from) values(03,'Manager',to_date('13-3-2024','dd-mm-yyyy'));
+
+SELECT * FROM Titleee;
+
+SELECT* FROM worker;
+
+SELECT first_name,salary FROM worker;
+
+SELECT * FROM worker WHERE salary>1000;
+
+SELECT * FROM worker WHERE worker.DEPARTMENT='OPS';
+
+SELECT * FROM worker WHERE salary BETWEEN 8000 AND 10000;
+
+SELECT * FROM worker WHERE department ='hr' OR department = 'OPS';
+
+SELECT * FROM worker WHERE department IN('OPS','admin');
+
+SELECT * FROM worker WHERE department NOT IN('OPS','admin');
+
+CREATE TABLE customerrr(
+c_id integer PRIMARY KEY,
+cname VARCHAR(225),
+address VARCHAR(225),
+gender CHAR(2),
+city VARCHAR(225),
+pincode integer);
+
+INSERT
+INTO
+  CUSTOMERRR VALUES(1251,'Ram Kumar','DILBAGH NAGAR','M','JALANDHAR',144002);
+  
+
+
+
+
